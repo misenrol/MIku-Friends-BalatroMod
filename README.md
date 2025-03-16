@@ -3,7 +3,9 @@
 ## Miku & Friends help Jimbo out!
 
 A full-blown Vocaloid mod with original Jokers that are meant to be balanced in vanilla!
+
 -Latest Steammodded installation is needed!
+
 Mod features:
 - New Jokers - (Currently 5 out of 20-ish)
 - Original Art by Misenrol
