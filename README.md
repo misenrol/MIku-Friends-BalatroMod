@@ -10,7 +10,7 @@ Mod features:
 - 
 ![](images/miku.png)
 ![](images/teto.png)
-![](images/carrot..png)
+![](images/shiteyanyo.png)
 ![](images/lolly.png)
 
 This mod is still brand new and new content is still being added daily/weekly!
