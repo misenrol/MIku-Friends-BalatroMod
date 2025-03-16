@@ -1,5 +1,5 @@
 # Miku&Friends - A Vocaloid Balatro Mod
-![](images/mikuandjimbo.png)
+![](mikuandjimbo.png)
 ## Miku & Friends help Jimbo out!
 
 A full-blown Vocaloid mod with original Jokers that are meant to be balanced in vanilla!
