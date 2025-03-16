@@ -7,10 +7,12 @@ A full-blown Vocaloid mod with original Jokers that are meant to be balanced in 
 Mod features:
 - New Jokers - (Currently 5 out of 20-ish)
 - Original Art by Misenrol
+- 
 ![](images/miku.png)
 ![](images/teto.png)
 ![](images/carrot..png)
 ![](images/lolly.png)
+
 This mod is still brand new and new content is still being added daily/weekly!
 If any problems or issues come up:
 **[Join our Discord!](https://discord.gg/8ezUX7ACd7)**
