@@ -629,7 +629,7 @@ SMODS.Joker{
                                         nil,
                                         nil,
                                         nil,
-                                        { message = localize('Order up!'), colour = G.C.PURPLE }
+                                        { message = localize('k_plus_tarot'), colour = G.C.PURPLE }
                                     )
 
                                     return true
