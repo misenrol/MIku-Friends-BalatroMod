@@ -14,6 +14,8 @@ Mod features:
 ![](images/teto.png)
 ![](images/shiteyanyo.png)
 ![](images/lolly.png)
+![](images/Neruphone.png)
+![](images/baka.png)
 
 This mod is still brand new and new content is still being added daily/weekly!
 If any problems or issues come up:
