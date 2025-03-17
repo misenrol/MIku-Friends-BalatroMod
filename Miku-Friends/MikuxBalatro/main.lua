@@ -18,6 +18,7 @@ SMODS.Sound({
     replace = true
 })
 
+
 Miku = {Jimbo_Miku}
 Teto = {Jimbo_Teto}
 
@@ -61,12 +62,12 @@ SMODS.Joker{
     loc_txt = {
         name = 'Jimbo Teto',
         text = {
-            'For every {C:mult}Discard{} left,',
-            '{C:mult}+5 Mult{} and',
-            'for every {C:chips}Hand{} left {C:chips}+20 Chips{}'
+            'For every {C:mult}Discard{} left {C:mult}+1 Mult{} and',
+            'for every {C:chips}Hand{} left {C:chips}+6 Chips{}',
+            'per card scored'
         }
     },
-    config = { extra = { chips = 15, mult = 3 } },
+    config = { extra = { chips = 6, mult = 1 } },
     rarity = 1,
     atlas = 'Jokers',
     pos = { x = 1, y = 0 },
@@ -289,6 +290,7 @@ SMODS.Joker{
 			if (next(context.poker_hands['Straight'])) then
 				return {
 					message = 'Again!',
+                    colour = G.C.CHIPS,
 					repetitions = card.ability.extra.repetitions,
 					card = context.other_card
 				}
@@ -509,4 +511,136 @@ SMODS.Joker{
             }
 		end
 	end
+}
+
+SMODS.Joker{
+    key = 'Veg_Juice',
+    loc_txt = {
+        name = 'Vegetable Juice',
+        text = {
+            'When this Joker is {C:attention}Sold{},',
+            'gain a random {C:attention}Tag{}',
+            '{C:yellow} ONLY 200 YEN!{}'
+            
+        }
+    },
+    config = {
+        extra = {
+            selection = 1,
+            opitions = {
+                [1] = 'tag_charm',
+                [2] = 'tag_meteor',
+                [3] = 'tag_rare',
+                [4] = 'tag_holo',
+                [5] = 'tag_foil',
+                [6] = 'tag_uncommon',
+                [7] = 'tag_polychrome'
+            }
+
+        }
+    },
+    rarity = 1,
+    cost = 2,
+    blueprint_compat = true,
+    eternal_compat = false,
+    unlock_card = true,
+    discovered = true,
+    atlas = 'Jokers',
+    pos = { x = 1, y = 1 },
+
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'tag_charm', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_meteor', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_rare', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_holo', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_foil', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_uncommon', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_polychrome', set = 'Tag'}
+        
+        return {vars = {card.ability.extra.selection, card.ability.extra.opitions}}
+    end,
+
+    calculate = function(self, card, context)
+       if context.selling_self then
+            for i=1, 1 do
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        add_tag(Tag(pseudorandom_element(card.ability.extra.opitions, pseudoseed('veg'))))
+                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                        play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                        return true
+                    end)
+                }))
+            end
+        end
+    end
+}
+SMODS.Joker{
+    key = 'Domino_Miku',
+    loc_txt = {
+        name = 'Domino Miku',
+        text = {
+            '{C:green}#2# in #3#{} to create a {C:purple}Tarot{} card(s),',
+            ' when played {C:attention}hand{} contains a {C:attention}Pair{}',
+        }
+    },
+    config = { extra = { odds = 4 } },
+    rarity = 1,
+    cost = 4,
+    blueprint_compat = true,
+    eternal_compat = true,
+    unlock_card = true,
+    discovered = true,
+    atlas = 'Jokers',
+    pos = { x = 2, y = 1 },
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = {
+            card.ability.extra.money,
+            (G.GAME.probabilities.normal or 1),
+            card.ability.extra.odds
+        } }
+    end,
+
+    calculate = function(self, card, context)
+        -- Ensure poker_hands exists and contains 'Two Pair'
+        if context.poker_hands and next(context.poker_hands['Pair'])
+            and not context.repetition
+            and not context.blueprint
+        then
+            -- Check if we can add a new Tarot card
+            if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                if pseudorandom('Domino_Miku') < (G.GAME.probabilities.normal or 1) / card.ability.extra.odds then
+                    -- Add event for Tarot card creation
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    local new_card = create_card('Tarot', G.consumeables, nil, nil, nil, nil, nil, 'domino')
+                                    new_card:add_to_deck()
+                                    G.consumeables:emplace(new_card)
+                                    G.GAME.consumeable_buffer = 0
+
+                                    -- Display evaluation status message
+                                    card_eval_status_text(
+                                        context.blueprint_card or new_card,
+                                        'extra',
+                                        nil,
+                                        nil,
+                                        nil,
+                                        { message = localize('Order up!'), colour = G.C.PURPLE }
+                                    )
+
+                                    return true
+                                end
+                            }))
+
+                            return true
+                        end
+                    }))
+                end
+            end
+        end
+    end
 }
