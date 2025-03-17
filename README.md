@@ -7,7 +7,7 @@ A full-blown Vocaloid mod with original Jokers that are meant to be balanced in 
 -Latest Steammodded installation is needed!
 
 Mod features:
-- New Jokers - (Currently 5 out of 20-ish)
+- New Jokers - (Currently 12 out of 20-ish)
 - Original Art by Misenrol
 - 
 ![](images/miku.png)
