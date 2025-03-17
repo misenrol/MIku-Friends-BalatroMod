@@ -15,7 +15,9 @@ Mod features:
 ![](images/shiteyanyo.png)
 ![](images/lolly.png)
 ![](images/Neruphone.png)
+![](images/juice.png)
 ![](images/baka.png)
+![](iamges/dominopng.png)
 
 This mod is still brand new and new content is still being added daily/weekly!
 If any problems or issues come up:
