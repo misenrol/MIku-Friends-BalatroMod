@@ -28,8 +28,7 @@ SMODS.Joker{
         name = 'Jimbo Miku',
         text = {
             'For every {C:clubs}Club{} played in hand,',
-            '{C:mult}+2 Mult{} and',
-            '{C:chips}+5 Chips{}'
+            '{C:mult}+2{} Mult and {C:chips}+5{} Chips'
         }
     },
     config = { extra = { chips = 5, mult = 2 } },
@@ -62,8 +61,8 @@ SMODS.Joker{
     loc_txt = {
         name = 'Jimbo Teto',
         text = {
-            'For every {C:mult}Discard{} left {C:mult}+1 Mult{} and',
-            'for every {C:chips}Hand{} left {C:chips}+6 Chips{}',
+            'For every {C:mult}Discard{} left {C:mult}+1{} Mult and',
+            'for every {C:chips}Hand{} left {C:chips}+6{} Chips',
             'per card scored'
         }
     },
@@ -126,8 +125,8 @@ SMODS.Joker{
         name = "Kaito's Ice Lolly",
         text = {
             'If hand contains a {C:attention}Straight{},',
-            'gain {C:mult}x0.25 Mult{}',
-            '{C:inactive}(Currently {C:mult}x#1#{C:inactive}Mult)',
+            'gain {X:mult,C:white}x0.25{} Mult',
+            '{C:inactive}(Currently {X:mult,C:white}x#1#{C:inactive} Mult)',
         }
     },
     config = { extra = { Xmult = 1, Xmult_gain = 0.25 } },
@@ -168,8 +167,8 @@ SMODS.Joker{
         name = "Gumi's Carrot",
         text = {
             'For every {C:attention}Ace{},',
-            'played in hand gain {C:mult}x0.2 Mult{},',
-            '{C:inactive}(Currently {C:mult}x#1#{C:inactive}Mult)',
+            'played in hand gain {X:mult,C:white}x0.2{} Mult,',
+            '{C:inactive}(Currently {X:mult,C:white}x#1#{C:inactive} Mult)',
         }
     },
     config = { extra = { Xmult = 1, Xmult_gain = 0.2 } },
@@ -214,9 +213,9 @@ SMODS.Joker{
         name = "Neru's Smartphone",
         text = {
             'For every face card played',
-            'gain {C:mult}x1 Mult{},',
+            'gain {X:mult,C:white}x1{} Mult,',
             'resets each blind',
-            '{C:inactive}(Currently {C:mult}x#1#{C:inactive}Mult)'
+            '{C:inactive}(Currently {X:mult,C:white}x#1#{C:inactive} Mult)'
         }
     },
     config = { 
@@ -310,7 +309,6 @@ SMODS.Joker {
             'at the end of the round'
         }
     },
-    -- Renamed "odd" to "odds"
     config = {
         extra = {
             money = 2,
@@ -346,9 +344,7 @@ SMODS.Joker {
             end
         end
         if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
-			-- Another pseudorandom thing, randomly generates a decimal between 0 and 1, so effectively a random percentage.
 			if pseudorandom('Sketchy_Ticket') < G.GAME.probabilities.normal / card.ability.extra.odds then
-				-- This part plays the animation.
 				G.E_MANAGER:add_event(Event({
 					func = function()
 						play_sound('tarot1')
@@ -356,7 +352,6 @@ SMODS.Joker {
 						card:juice_up(0.3, 0.4)
 						card.states.drag.is = true
 						card.children.center.pinch.x = true
-						-- This part destroys the card.
 						G.E_MANAGER:add_event(Event({
 							trigger = 'after',
 							delay = 0.3,
@@ -371,7 +366,6 @@ SMODS.Joker {
 						return true
 					end
 				}))
-				-- Sets the pool flag to true, meaning Gros Michel 2 doesn't spawn, and Cavendish 2 does.
 				G.GAME.pool_flags.Sketchy_Ticket_expired = true
 				return {
 					message = 'Expired!'
@@ -397,7 +391,6 @@ SMODS.Joker {
             'at the end of the round'
         }
     },
-    -- Renamed "odd" to "odds"
     config = {
         extra = {
             money = 3,
@@ -474,11 +467,11 @@ SMODS.Joker{
             'This Joker gains {C:chips}+3{} Chips,',
             'and {C:mult}+3{} Mult,',
             'when a hand contains a {C:attention}3 of a Kind',
-            '({C:inactive}Currently {C:chips}#1# Chips{} {C:inactive}&{} {C:mult}#2# Mult{})'
+            '({C:inactive}Currently {C:chips}+#1#{}{C:inactive} Chips and {C:mult}+#2#{}{C:inactive} Mult{})'
         }
     },
     config = { extra = { chips = 0, mult = 0, chip_gain = 3, mult_gain =3 } },
-    rarity = 2,
+    rarity = 3,
     cost = 5,
     blueprint_compat = true,
     eternal_compat = true,
@@ -493,9 +486,8 @@ SMODS.Joker{
 		if context.joker_main then
 			return {
         	    chip_mod = card.ability.extra.chips,
-                mult_mod = card.ability.extra.mult,
-                chips = card.ability.extra.chips,
-                mult = card.ability.extra.mult
+                mult_mod = card.ability.extra.mult
+
             
 			}
 		end
@@ -530,9 +522,9 @@ SMODS.Joker{
             opitions = {
                 [1] = 'tag_charm',
                 [2] = 'tag_meteor',
-                [3] = 'tag_rare',
+                [5] = 'tag_rare',
                 [4] = 'tag_holo',
-                [5] = 'tag_foil',
+                [3] = 'tag_foil',
                 [6] = 'tag_uncommon',
                 [7] = 'tag_polychrome'
             }
@@ -551,11 +543,11 @@ SMODS.Joker{
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'tag_charm', set = 'Tag'}
         info_queue[#info_queue+1] = {key = 'tag_meteor', set = 'Tag'}
-        info_queue[#info_queue+1] = {key = 'tag_rare', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_polychrome', set = 'Tag'}
         info_queue[#info_queue+1] = {key = 'tag_holo', set = 'Tag'}
         info_queue[#info_queue+1] = {key = 'tag_foil', set = 'Tag'}
         info_queue[#info_queue+1] = {key = 'tag_uncommon', set = 'Tag'}
-        info_queue[#info_queue+1] = {key = 'tag_polychrome', set = 'Tag'}
+        info_queue[#info_queue+1] = {key = 'tag_rare', set = 'Tag'}
         
         return {vars = {card.ability.extra.selection, card.ability.extra.opitions}}
     end,
@@ -584,7 +576,7 @@ SMODS.Joker{
             ' when played {C:attention}hand{} contains a {C:attention}Pair{}',
         }
     },
-    config = { extra = { odds = 4 } },
+    config = { extra = { odds = 3 } },
     rarity = 1,
     cost = 4,
     blueprint_compat = true,
@@ -603,7 +595,6 @@ SMODS.Joker{
     end,
 
     calculate = function(self, card, context)
-        -- Ensure poker_hands exists and contains 'Two Pair'
         if context.poker_hands and next(context.poker_hands['Pair'])
             and not context.repetition
             and not context.blueprint
