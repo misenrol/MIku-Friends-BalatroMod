@@ -9,11 +9,10 @@ A full-blown Vocaloid mod with original Jokers that are meant to be balanced in 
 Mod features:
 - New Jokers - (Currently 12 out of 20-ish)
 - Original Art by Misenrol
-- 
+- Here is just a few!
 ![](images/miku.png)
 ![](images/teto.png)
 ![](images/shiteyanyo.png)
-![](images/lolly.png)
 ![](images/Neruphone.png)
 ![](images/juice.png)
 ![](images/baka.png)
