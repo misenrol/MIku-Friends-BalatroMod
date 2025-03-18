@@ -24,6 +24,8 @@ Mod features:
 
 -Vegetable Juice-
 -Sell this Joker to gain a random tag. ONLY 200 YEN!
+
+
 This mod is still brand new and new content is still being added daily/weekly!
 If any problems or issues come up:
 **[Join our Discord!](https://discord.gg/8ezUX7ACd7)**
