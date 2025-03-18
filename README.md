@@ -10,7 +10,8 @@ Mod features:
 - New Jokers - 15
 - Original Art by Misenrol
 
-[![Watch the video](https://img.youtube.com/vi/sCkoYx4CYEI/0.jpg)](https://www.youtube.com/watch?v=sCkoYx4CYEI)
+![Miku & Friends](https://raw.githubusercontent.com/misenrol/Miku-Friends-BalatroMod/main/images/Miku&Friends.gif)
+
 
 -Lets take a look at some:
 
