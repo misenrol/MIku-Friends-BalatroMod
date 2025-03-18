@@ -1,0 +1,17 @@
+{
+    "id": "Miku-Friends",
+    "name": "Miku & Friends",
+    "display_name": "Miku&Friends",
+    "author": ["Misenrol"],
+    "description": "Miku and Friends join Jimbo! With 15 New Jokers inspired by Vocaloid characters and songs and more to come!",
+    "prefix": "miku-friends",
+    "main_file": "main.lua",
+    "priority": 0,
+    "badge_colour": "1390A1",
+    "badge_text_colour": "FCFCFC",
+    "version": "1.0.0",
+    "dependencies": [
+        "Steamodded (1.0.0 beta (0312b))",
+        "Lovely (0.7)"
+    ]
+}
